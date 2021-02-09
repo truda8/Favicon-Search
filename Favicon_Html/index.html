@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Search</title>
+    <link rel="stylesheet" href="static/css/font_2370135_z8nuz4rqzlc.css">
+    <link rel="stylesheet" href="static/css/notiflix.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/animation.css">
+</head>
+<body>
+    <div class="container">
+        <div class="panel" id="panel">
+            <div class="panel-head">
+                <span>
+                    <i class="iconfont icon-fanhui" v-show="showList" v-on:click="comeBack"></i>
+                </span>
+                <h1 class="title">Favicon Search</h1>
+                <span>
+                    <a href="https://github.com/truda8/Favicon-Search" target="_blank">
+                        <i class="iconfont icon-github"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="panel-body">
+                <div class="panel-tab" v-show="!showList">
+                    <input class="slider-input" type="radio" name="slider" id="upload" checked>
+                    <input class="slider-input" type="radio" name="slider" id="url">
+                    <nav class="tab-text">
+                        <label for="upload" class="tab-upload" v-on:click="tab_switch('upload')">Upload</label>
+                        <label for="url" class="tab-url" v-on:click="tab_switch('url')">Url</label>
+                        <div class="slider"></div>
+                    </nav>
+                </div>
+                <div class="panel-upload" v-show="!isUrl && !showList" v-on:click="choiceImg" v-cloak @drop.prevent="addFile" @dragover.prevent>
+                    <input type="file" id="imageInput" name="image" ref="filElem" @change="getFile" value="" accept="image/*" multiple>
+                    <img class="upload-image" :src="upload_image">
+                    <span class="upload-text">{{ file.name }}</span>
+                </div>
+                <div class="panel-input" v-show="isUrl && !showList">
+                    <label class="url-label">
+                        <i class="iconfont icon-url1"></i>
+                    </label>
+                    <input type="text" class="url-input" v-model="favicon_url" placeholder="Favicon Url">
+                </div>
+                <div class="panel-list" v-show="showList">
+                    <div class="output-item" v-for="(item, index) in result">
+                        <span class="serial">{{ index + 1 }}</span>
+                        <input class="github-url" type="text" readonly="false" :value="item">
+                        <i class="iconfont icon-copy" @click="copyText(item)"></i>
+                        <i class="iconfont icon-Open" @click="linkDownload(item)"></i>
+                    </div>
+                </div>
+                <button class="search" v-on:click="search" v-show="!showList">Search</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="static/js/vue.min.js"></script>
+    <script type="text/javascript" src="static/js/axios.min.js"></script>
+    <script type="text/javascript" src="static/js/notiflix.min.js"></script>
+    <script type="text/javascript" src="static/js/vue-clipboard.min.js"></script>
+    <script type="text/javascript" src="static/js/main.js"></script>
+</body>
+</html>

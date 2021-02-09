@@ -1,0 +1,34 @@
+@keyframes tab_switch1 {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes tab_switch2 {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+#upload:checked ~ nav .slider {
+    animation-name: tab_switch1;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.3s;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+}
+
+#url:checked ~ nav .slider {
+    animation-name: tab_switch2;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.3s;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+}
+
